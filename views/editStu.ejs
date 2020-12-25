@@ -1,1 +1,13 @@
-<h2>学院编辑</h2>
+<a href="/getStudents"><h2>首页</h2></a>
+<h2>编辑学生信息</h2>
+
+<form action="/update">
+  <p>学生学号：<input type="text" name="id" value="<%=studentobj.id %>"></p>
+  <p>学生姓名：<input type="text" name="name" value="<%=studentobj.name %>"></p>
+  <p>出生日期：<input type="text" name="date" value="<%=studentobj.date %>"></p>
+  <p>性别：<input type="text" name="sex" value="<%=studentobj.sex %>"></p>
+  <p>住址：<input type="text" name="county" value="<%=studentobj.county %>"></p>
+  <p>信息：<input type="text" name="message" value="<%=studentobj.message %>"></p>
+  <p>email：<input type="text" name="email" value="<%=studentobj.email %>"></p>
+  <p><input type="submit" value="修改"></p>
+</form>

@@ -1,0 +1,73 @@
+<a href="/getStudents"><h2>学生列表</h2></a>
+
+<p>
+  姓名：<input type="text" id="username" name="username">
+  <button onclick="search()">搜索</button>
+</p>
+<p>
+  学号：<input type="text" id="userid" name="userid">
+  <button onclick="searchId()">搜索</button>
+</p>
+
+<table border="1">
+  <tr>
+    <th>序号</th>
+    <th>学号</th>
+    <th>学生姓名</th>
+    <th>出生年月</th>
+    <th>住址</th>
+    <th>操作</th>
+  </tr>
+  <% for(let i=0;i<res.length;i++){ %>
+    <% if(i<200){ %>
+      <tr>
+        <td>
+          <%=i+1%>
+        </td>
+        <td>
+          <%=res[i].id%>
+        </td>
+        <td>
+          <%=res[i].name%>
+        </td>
+        <td>
+          <%=moment(res[i].date).format("YYYY-MM-DD")%>
+        </td>
+        <td>
+          <%=res[i].county%>
+        </td>
+        <td>
+          <a href="/edit?id=<%=res[i].id %>">编辑</a>
+          <a href="javascript:del(<%=res[i].id %>)">删除</a>
+        </td>
+      </tr>
+    <% } %>
+  <% } %>
+</table>
+
+<script src="/js/jquery-3.5.1.js"></script>
+<script>
+
+  function search() {
+    location.href = '/getStudents?name=' + $("#username").val()
+  }
+
+  function searchId(){
+    location.href = '/getStudents?id=' + $("#userid").val()
+  }
+  
+  function del(id){
+    $.ajax({
+      url: `/delete?id=${id}`,
+      success: (res)=>{
+        if(res.delstatus === 1){
+          alert('删除成功')
+          location.reload()
+        }else{
+          alert('删除失败')
+        }
+      }
+    })
+  }
+
+</script>
